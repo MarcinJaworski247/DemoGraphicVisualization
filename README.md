@@ -1,2 +1,2 @@
-# data-vizualization
+# DemoGraphicVisualization
 Demographic data visualized with DevExtreme UI Controls
