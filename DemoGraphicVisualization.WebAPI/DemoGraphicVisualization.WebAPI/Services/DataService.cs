@@ -1,4 +1,5 @@
-﻿using DemoGraphicVisualization.WebAPI.RestAPI;
+﻿using DemoGraphicVisualization.WebAPI.DTO;
+using DemoGraphicVisualization.WebAPI.RestAPI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,9 +14,9 @@ namespace DemoGraphicVisualization.WebAPI.Services
         {
             this.restApiService = restApiService;
         }
-        public object GetTestData()
+        public PopulationDataDTO GetPopulationData()
         {
-            return restApiService.GetTestData();
+            return restApiService.GetPopulationData();
         }
     }
 }

@@ -1,40 +1,33 @@
-﻿using System;
+﻿using DemoGraphicVisualization.WebAPI.DTO;
+using RestSharp;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net.Http;
-using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace DemoGraphicVisualization.WebAPI.RestAPI
 {
     public class RestApiService : IRestApiService
     {
-        private readonly IHttpClientFactory _clientFactory;
-        public RestApiService(IHttpClientFactory clientFactory)
+        public PopulationDataDTO GetPopulationData()
         {
-            _clientFactory = clientFactory;
-        }
-        public async Task<List<object>> GetTestData()
-        {
-            var request = new HttpRequestMessage(HttpMethod.Get,
-            "http://ec.europa.eu/eurostat/wdds/rest/data/v2.1/json/en/tps00001?precision=1");
-            //request.Headers.Add("Accept", "application/vnd.github.v3+json");
-            //request.Headers.Add("User-Agent", "HttpClientFactory-Sample");
+            IRestClient restClient = new RestClient();
+            IRestRequest restRequest = new RestRequest
+                ("http://ec.europa.eu/eurostat/wdds/rest/data/v2.1/json/en/tps00001?precision=1");
+            restRequest.AddHeader("Accept", "application/json");
 
-            var client = _clientFactory.CreateClient();
+            IRestResponse<PopulationDataDTO> restResponse = restClient.Get<PopulationDataDTO>(restRequest);
 
-            var response = await client.SendAsync(request);
-
-            List<object> data = new List<object>();
-
-            if (response.IsSuccessStatusCode)
+            if (restResponse.IsSuccessful)
             {
-                using var responseStream = await response.Content.ReadAsStreamAsync();
-                data = await JsonSerializer.DeserializeAsync
-                    <List<object>>(responseStream);
+                return restResponse.Data;
             }
-
-            return data;
+            else
+            {
+                return null;
+            }
         }
     }
 }

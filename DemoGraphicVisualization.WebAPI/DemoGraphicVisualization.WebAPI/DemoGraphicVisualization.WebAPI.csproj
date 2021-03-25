@@ -6,8 +6,13 @@
 
   <ItemGroup>
     <Folder Include="Converters\" />
-    <Folder Include="DTO\" />
     <Folder Include="VM\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Json.Net" Version="1.0.25" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="RestSharp" Version="106.11.7" />
   </ItemGroup>
 
 

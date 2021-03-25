@@ -16,10 +16,10 @@ namespace DemoGraphicVisualization.WebAPI.Controllers
         {
             this.dataService = dataService;
         }
-        [HttpGet("getTestData")]
-        public ActionResult GetTestData()
+        [HttpGet("getPopulationData")]
+        public ActionResult GetPopulationData()
         {
-            var data = dataService.GetTestData();
+            var data = dataService.GetPopulationData();
             return Ok(data);
         }
     }
