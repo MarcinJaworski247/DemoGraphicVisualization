@@ -2,8 +2,11 @@ import axios from "@/http-common";
 const data = "/data";
 
 class homeService {
-  getTestData() {
-    return axios.get(`${data}/getTestData`);
+  getPopulationDataToChart() {
+    return axios.get(`${data}/getPopulationDataToChart`);
+  }
+  getPopulationDataToMap() {
+    return axios.get(`${data}/getPopulationDataToMap`);
   }
 }
 

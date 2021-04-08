@@ -13,6 +13,8 @@ namespace DemoGraphicVisualization.WebAPI.DTO
         public object Indic_de { get; set; }
         [DeserializeAs(Name = "geo")]
         public Geo Geo { get; set; }
+        [DeserializeAs(Name  = "time")]
+        public Time Time { get; set; }
     }
     public class Geo
     {
@@ -24,9 +26,9 @@ namespace DemoGraphicVisualization.WebAPI.DTO
     public class GetCategory
     {
         [DeserializeAs(Name = "index")]
-        public List<Dictionary<string, int>> Indexes { get; set; }
+        public Dictionary<string, int> Indexes { get; set; }
         [DeserializeAs(Name = "label")]
-        public List<Dictionary<string, string>> Labels { get; set; }
+        public Dictionary<string, string> Labels { get; set; }
     }
     public class Time
     {
@@ -38,11 +40,11 @@ namespace DemoGraphicVisualization.WebAPI.DTO
     public class TimeCategory
     {
         [DeserializeAs(Name = "index")]
-        public List<Dictionary<string, int>> Indexes { get; set; }
+        public Dictionary<string, int> Indexes { get; set; }
         [DeserializeAs(Name = "label")]
-        public List<Dictionary<string, string>> Labels { get; set; }
+        public Dictionary<string, string> Labels { get; set; }
     }
-    public class PopulationDataDTO
+    public class RestApiDataDTO
     {
         [DeserializeAs(Name = "version")]
         public string Version { get; set; }
@@ -55,15 +57,15 @@ namespace DemoGraphicVisualization.WebAPI.DTO
         [DeserializeAs(Name = "updated")]
         public string Updated { get; set; }
         [DeserializeAs(Name = "status")]
-        public List<Dictionary<string, string>> Statuses { get; set; }
+        public Dictionary<string, string> Statuses { get; set; }
         [DeserializeAs(Name = "extension")]
         public object Extensions { get; set; }
         [DeserializeAs(Name = "class")]
         public string Class { get; set; }
         [DeserializeAs(Name = "value")]
-        public List<Dictionary<string, int>> Values { get; set; }
+        public Dictionary<string, int> Values { get; set; }
         [DeserializeAs(Name = "dimension")]
-        public List<Dimension> Dimensions { get; set; }
+        public Dimension Dimensions { get; set; }
         [DeserializeAs(Name = "id")]
         public object Id { get; set; }
         [DeserializeAs(Name = "size")]

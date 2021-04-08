@@ -11,14 +11,14 @@ namespace DemoGraphicVisualization.WebAPI.RestAPI
 {
     public class RestApiService : IRestApiService
     {
-        public PopulationDataDTO GetPopulationData()
+        public RestApiDataDTO GetPopulationData()
         {
             IRestClient restClient = new RestClient();
             IRestRequest restRequest = new RestRequest
                 ("http://ec.europa.eu/eurostat/wdds/rest/data/v2.1/json/en/tps00001?precision=1");
             restRequest.AddHeader("Accept", "application/json");
 
-            IRestResponse<PopulationDataDTO> restResponse = restClient.Get<PopulationDataDTO>(restRequest);
+            IRestResponse<RestApiDataDTO> restResponse = restClient.Get<RestApiDataDTO>(restRequest);
 
             if (restResponse.IsSuccessful)
             {

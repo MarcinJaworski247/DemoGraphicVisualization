@@ -8,6 +8,6 @@ namespace DemoGraphicVisualization.WebAPI.RestAPI
 {
     public interface IRestApiService 
     {
-        PopulationDataDTO GetPopulationData();
+        RestApiDataDTO GetPopulationData();
     }
 }

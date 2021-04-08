@@ -1,4 +1,5 @@
 ﻿using DemoGraphicVisualization.WebAPI.DTO;
+using DemoGraphicVisualization.WebAPI.VM;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,6 +9,7 @@ namespace DemoGraphicVisualization.WebAPI.Services
 {
     public interface IDataService
     {
-        PopulationDataDTO GetPopulationData();
+        List<PopulationDataChartVM> GetPopulationDataToChart();
+        List<PopulationDataMapVM> GetPopulationDataToMap();
     }
 }
