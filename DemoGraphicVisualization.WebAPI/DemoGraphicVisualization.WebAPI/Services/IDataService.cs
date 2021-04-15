@@ -9,7 +9,7 @@ namespace DemoGraphicVisualization.WebAPI.Services
 {
     public interface IDataService
     {
-        List<PopulationDataChartVM> GetPopulationDataToChart();
-        List<PopulationDataMapVM> GetPopulationDataToMap();
+        List<PopulationDataChartVM> GetPopulationDataToChart(string year);
+        Dictionary<string, long> GetPopulationDataToMap(string year);
     }
 }

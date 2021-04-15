@@ -63,7 +63,7 @@ namespace DemoGraphicVisualization.WebAPI.DTO
         [DeserializeAs(Name = "class")]
         public string Class { get; set; }
         [DeserializeAs(Name = "value")]
-        public Dictionary<string, int> Values { get; set; }
+        public Dictionary<string, long> Values { get; set; }
         [DeserializeAs(Name = "dimension")]
         public Dimension Dimensions { get; set; }
         [DeserializeAs(Name = "id")]

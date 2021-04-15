@@ -14,6 +14,10 @@ Vue.use(BootstrapVue);
 import "@fortawesome/fontawesome-free/css/all.css";
 import "@fortawesome/fontawesome-free/js/all.js";
 
+//DevExtreme
+import "devextreme/dist/css/dx.common.css";
+import "devextreme/dist/css/dx.light.css";
+
 Vue.config.productionTip = false;
 
 new Vue({

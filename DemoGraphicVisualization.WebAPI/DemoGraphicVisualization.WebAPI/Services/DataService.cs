@@ -21,21 +21,21 @@ namespace DemoGraphicVisualization.WebAPI.Services
             this.dataConverter = new DataConverter();
             this.colors = new Colors();
         }
-        public List<PopulationDataChartVM> GetPopulationDataToChart()
+        public List<PopulationDataChartVM> GetPopulationDataToChart(string year)
         {
             RestApiDataDTO restApiData = restApiService.GetPopulationData();
-            List<PopulationDataChartVM> populationDataVM = dataConverter.ConvertPopulationDataToChart(restApiData);
+            List<PopulationDataChartVM> populationDataVM = dataConverter.ConvertPopulationDataToChart(restApiData, year);
 
             return populationDataVM;
         }
-        public List<PopulationDataMapVM> GetPopulationDataToMap()
+        public Dictionary<string, long> GetPopulationDataToMap(string year)
         {
             RestApiDataDTO restApiData = restApiService.GetPopulationData();
-            List<PopulationDataMapVM> populationDataVM = dataConverter.ConvertPopulationDataToMap(restApiData);
-            foreach(var item in populationDataVM)
-            {
-                item.Color = colors.GetRandomHTMLColor();
-            }
+            Dictionary<string, long> populationDataVM = dataConverter.ConvertPopulationDataToMap(restApiData, year);
+            //foreach(var item in populationDataVM)
+            //{
+            //    item.Color = colors.GetRandomHTMLColor();
+            //}
 
             return populationDataVM;
         }

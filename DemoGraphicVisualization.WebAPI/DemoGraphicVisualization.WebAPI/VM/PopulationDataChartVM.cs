@@ -9,6 +9,6 @@ namespace DemoGraphicVisualization.WebAPI.VM
     {
         public string  Nation { get; set; }
         public long? Population { get; set; }
-        public int? Year { get; set; }
+        public string Year { get; set; }
     }
 }

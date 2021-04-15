@@ -16,16 +16,16 @@ namespace DemoGraphicVisualization.WebAPI.Controllers
         {
             this.dataService = dataService;
         }
-        [HttpGet("getPopulationDataToChart")]
-        public ActionResult getPopulationDataToChart()
+        [HttpGet("getPopulationDataToChart/{year}")]
+        public ActionResult GetPopulationDataToChart(string year)
         {
-            var data = dataService.GetPopulationDataToChart();
+            var data = dataService.GetPopulationDataToChart(year);
             return Ok(data);
         }
-        [HttpGet("getPopulationDataToMap")]
-        public ActionResult GetPopupulationToMap()
+        [HttpGet("getPopulationDataToMap/{year}")]
+        public ActionResult GetPopupulationToMap(string year)
         {
-            var data = dataService.GetPopulationDataToMap();
+            var data = dataService.GetPopulationDataToMap(year);
             return Ok(data);
         }
     }

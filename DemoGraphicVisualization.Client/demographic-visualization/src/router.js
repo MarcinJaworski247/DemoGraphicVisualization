@@ -1,24 +1,31 @@
 import Vue from "vue";
 import Router from "vue-router";
-
-import HomeRouter from "./pages/home/router";
+import PopulationChart from "./pages/population/views/IndexChart.vue";
+import PopulationMap from "./pages/population/views/IndexMap.vue";
 
 Vue.use(Router);
 
-var allRoutes = [];
-
-const redirectToHome = [
+const allRoutes = [
   {
-    path: "/",
-    redirect: { name: "home.index" },
+    path: "/population/chart",
+    name: "population.chart.index",
+    component: PopulationChart,
   },
+  {
+    path: "/population/map",
+    name: "population.map.index",
+    component: PopulationMap,
+  }
 ];
 
-allRoutes = allRoutes.concat(HomeRouter, redirectToHome);
-
-const routes = allRoutes;
+// const redirectToHome = [
+//   {
+//     path: "/",
+//     redirect: { name: "home.index" },
+//   },
+// ];
 
 export default new Router({
   mode: "history",
-  routes: routes,
+  routes: allRoutes,
 });

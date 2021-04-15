@@ -5,13 +5,11 @@ const namespaced = true;
 
 const state = {
   populationChart: [],
-  populationMap: [],
 };
 
 const getters = {
   getField,
   getPopulationChartData: (state) => state.populationChart,
-  getPopulationMapData: (state) => state.populationMap,
 };
 
 const mutations = {
@@ -19,20 +17,24 @@ const mutations = {
   setPopulationChartData(state, payload) {
     state.populationChart = payload;
   },
-  setPopulationMapData(state, payload) {
-    state.populationMap = payload;
-  },
 };
 
 const actions = {
-  setPopulationChartData: ({ commit }) => {
-    service.getPopulationDataToChart().then((response) => {
+  setPopulationChartData: ({ commit }, year) => {
+    service.getPopulationDataToChart(year).then((response) => {
       commit("setPopulationChartData", response.data);
     });
   },
-  setPopulationMapData: ({ commit }) => {
-    service.getPopulationDataToMap().then((response) => {
-      commit("setPopulationMapData", response.data);
+  setPopulationMapData: ({ commit }, year) => {
+    return new Promise((resolve, reject) => {
+      service.getPopulationDataToMap(year).then(
+        (response) => {
+          resolve(response);
+        },
+        (error) => {
+          reject(error);
+        }
+      );
     });
   },
 };
