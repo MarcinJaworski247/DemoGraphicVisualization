@@ -1,4 +1,6 @@
-﻿using DemoGraphicVisualization.WebAPI.Services;
+﻿using DemoGraphicVisualization.WebAPI.Enums;
+using DemoGraphicVisualization.WebAPI.Services;
+using DemoGraphicVisualization.WebAPI.VM;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -26,6 +28,24 @@ namespace DemoGraphicVisualization.WebAPI.Controllers
         public ActionResult GetPopupulationToMap(string year)
         {
             var data = dataService.GetPopulationDataToMap(year);
+            return Ok(data);
+        }
+        [HttpPost("getMigrationDataToChart")]
+        public ActionResult GetMigrationDataToChart(NationsParamVM param)
+        {
+            var data = dataService.GetMigrationDataToChart(param.Year, param.SelectedNations);
+            return Ok(data);
+        }
+        [HttpGet("getNationsToLookup")]
+        public ActionResult GetNationsToLookup()
+        {
+            var data = dataService.GetNationsToLookup();
+            return Ok(data);
+        }
+        [HttpGet("getNationMigrationDataToChart/{nation}/{migrationType}")]
+        public ActionResult GetNationMigrationDataToChart(string nation, MigrationType migrationType)
+        {
+            var data = dataService.GetNationMigrationDataToChart(nation, migrationType);
             return Ok(data);
         }
     }

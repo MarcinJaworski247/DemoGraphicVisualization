@@ -9,7 +9,7 @@
   </div>
 </template>
 <script>
-import Chart from "../components/Chart";
+import Chart from "../components/PopulationChart";
 
 export default {
   components: {

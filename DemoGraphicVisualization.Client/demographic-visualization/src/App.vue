@@ -21,6 +21,15 @@
       <router-link :to="{ name: `population.map.index` }">
         <div>Population map</div>
       </router-link>
+      <router-link :to="{ name: `migration.chart.index` }">
+        <div>Migration chart</div>
+      </router-link>
+      <router-link :to="{ name: `migration.nationChart.index` }">
+        <div>Migration chart by nation</div>
+      </router-link>
+      <!-- <router-link :to="{ name: `migration.map.index` }">
+        <div>Migration map</div>
+      </router-link> -->
     </div>
     <div id="main" :class="{ mainopen: opened }">
       <router-view />
@@ -117,9 +126,9 @@ body {
 }
 
 .side-nav a {
-  padding: 10px 10px 10px 30px;
+  padding: 10px 10px 40px 30px;
   text-decoration: none;
-  font-size: 22px;
+  font-size: 18px;
   color: #ccc;
   display: block;
   transition: 0.3s;

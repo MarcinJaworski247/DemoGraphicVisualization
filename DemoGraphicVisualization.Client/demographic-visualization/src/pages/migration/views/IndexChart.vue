@@ -1,19 +1,19 @@
 <template>
   <div>
     <div class="title">
-      Population
+      Migration
     </div>
     <div>
-      <Map />
+      <Chart />
     </div>
   </div>
 </template>
 <script>
-import Map from "../components/PopulationMap";
+import Chart from "../components/MigrationChart";
 
 export default {
   components: {
-    Map,
+    Chart,
   },
 };
 </script>
