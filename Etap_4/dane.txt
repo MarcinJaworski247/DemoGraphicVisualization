@@ -1,0 +1,11 @@
+>Zrealizowano w aktualnym etapie:
+- implementacja vector-map i bar-chart,
+- poprawki mapowania danych przychodzących z Rest API, 
+- przygotowanie danych do wysłania do klienta
+
+>Do realizacji w kolejnym etapie:
+- kolejne kontrolki UI,
+- obsługa danych w WebAPI
+
+>Statystyki z repozytorium z ostatniego tygodnia:
+Excluding merges, 1 author has pushed 3 commits to main and 3 commits to all branches. On main, 30 files have changed and there have been 1,266 additions and 147 deletions.
