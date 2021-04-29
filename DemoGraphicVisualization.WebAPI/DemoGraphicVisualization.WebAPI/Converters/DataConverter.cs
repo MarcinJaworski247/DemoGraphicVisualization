@@ -127,6 +127,17 @@ namespace DemoGraphicVisualization.WebAPI.Converters
 
             return result;
         }
+        public List<PopulationDataTreeMapVM> ConvertPopulationDataToTreeMap(RestApiPopulationDataDTO data, string year)
+        {
+            List<Value> values = GetPopulationBaseStructure(data, year);
+            List<PopulationDataTreeMapVM> result = values.Select(x => new PopulationDataTreeMapVM
+            {
+                Name = x.Nation.Value,
+                Value = x.Population
+            }).ToList();
+
+            return result;
+        }
         public Dictionary<string, long> ConvertPopulationDataToMap(RestApiPopulationDataDTO data, string year)
         {
             List<Value> values = GetPopulationBaseStructure(data, year);

@@ -30,6 +30,18 @@ namespace DemoGraphicVisualization.WebAPI.Controllers
             var data = dataService.GetPopulationDataToMap(year);
             return Ok(data);
         }
+        [HttpGet("getPopulationDataToTreeMap/{year}")]
+        public ActionResult GetPopulationDataToTreeMap(string year)
+        {
+            var data = dataService.GetPopulationDataToTreeMap(year);
+            return Ok(data);
+        }
+        [HttpGet("getPopulationDataToGraph/{year}")]
+        public ActionResult GetPopulationDataToGraph(string year)
+        {
+            var data = dataService.GetPopulationDataToGraph(year);
+            return Ok(data);
+        }
         [HttpPost("getMigrationDataToChart")]
         public ActionResult GetMigrationDataToChart(NationsParamVM param)
         {

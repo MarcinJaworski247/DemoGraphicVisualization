@@ -51,7 +51,7 @@ export const populations = {
   Switzerland: 8606033,
   Cyprus: 888005,
   Czechia: 10693939,
-  "Germany": 83166711,
+  Germany: 83166711,
   Denmark: 5822763,
   Estonia: 1328976,
   Greece: 10718565,
@@ -88,4 +88,81 @@ export const populations = {
   Turkey: 83154997,
   Ukraine: 41732779,
   "United Kingdom": 67025542,
+};
+
+export const treeMapPopulations = [
+  {
+    name: "Europe",
+    items: [
+      {
+        name: "Andorra",
+        value: 76177,
+        year: null,
+      },
+      {
+        name: "Albania",
+        value: 2862427,
+        year: null,
+      },
+      {
+        name: "Armenia",
+        value: 2965269,
+        year: null,
+      },
+      {
+        name: "Austria",
+        value: 8858775,
+        year: null,
+      },
+      {
+        name: "Azerbaijan",
+        value: 9981457,
+        year: null,
+      },
+      {
+        name: "Bosnia and Herzegovina",
+        value: 3492018,
+        year: null,
+      },
+      {
+        name: "Belgium",
+        value: 11455519,
+        year: null,
+      },
+      {
+        name: "Bulgaria",
+        value: 7000039,
+        year: null,
+      },
+    ],
+  },
+];
+
+export const graphData = {
+  nodes: [
+    {
+      id: "base",
+      group: "1",
+    },
+    {
+      id: "Poland",
+      group: "1",
+    },
+    {
+      id: "France",
+      group: "1",
+    },
+  ],
+  links: [
+    {
+      source: "base",
+      target: "Poland",
+      value: 4,
+    },
+    {
+      source: "base",
+      target: "France",
+      value: 6,
+    },
+  ],
 };

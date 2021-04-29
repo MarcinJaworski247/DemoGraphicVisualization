@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="title">
-      Population
+      Population bar chart
     </div>
     <div>
       <Chart />
@@ -18,9 +18,4 @@ export default {
 };
 </script>
 <style scoped>
-.title {
-  font-size: 32px;
-  border-bottom: 1px solid black;
-  margin: 32px;
-}
 </style>

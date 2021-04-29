@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="row">
-      <div class="ml-4">
+      <div class="ml-4 mb-4">
         <DxSelectBox
           :data-source="years"
           value-expr="id"
@@ -13,41 +13,24 @@
       </div>
     </div>
     <div>
-      <DxChart
-        id="chart"
-        :data-source="getPopulationChartData"
-        :legend-visible="false"
-        palette="Soft"
+      <DxTreeMap
+        id="treemap"
+        :data-source="getPopulationTreeMapData"
       >
-        <DxCommonSeriesSettings
-          argument-field="nation"
-          value-field="population"
-          :ignore-empty-points="true"
-          type="bar"
-        />
-        <DxSeriesTemplate name-field="nation" />
-        <DxTitle text="Population in European countries" class="mb-4" />
         <DxTooltip
           :enabled="true"
           :customize-tooltip="customizeTooltip"
           format="millions"
         />
-        <DxLegend :visible="false" />
-      </DxChart>
+      </DxTreeMap>
     </div>
   </div>
 </template>
 <script>
 import { mapGetters, mapActions } from "vuex";
-import {
-  DxChart,
-  DxSeriesTemplate,
-  DxCommonSeriesSettings,
-  DxTitle,
-  DxTooltip,
-  DxLegend,
-} from "devextreme-vue/chart";
 import { DxSelectBox } from "devextreme-vue";
+import DxTreeMap, { DxTooltip } from "devextreme-vue/tree-map";
+import { treeMapPopulations } from "./data.js";
 
 const STORE = "PopulationStore";
 
@@ -68,38 +51,42 @@ export default {
         { id: 10, name: "2019" },
         { id: 11, name: "2020" },
       ],
+      treeMapPopulations,
     };
   },
   components: {
-    DxChart,
-    DxSeriesTemplate,
-    DxCommonSeriesSettings,
-    DxTitle,
-    DxTooltip,
     DxSelectBox,
-    DxLegend,
+    DxTreeMap,
+    DxTooltip,
   },
   computed: {
-    ...mapGetters(STORE, ["getPopulationChartData"]),
+    ...mapGetters(STORE, ["getPopulationTreeMapData"]),
   },
   methods: {
-    ...mapActions(STORE, ["setPopulationChartData"]),
-    customizeTooltip(pointInfo) {
-      return {
-        text: `${pointInfo.argumentText}<br/>Population:  ${pointInfo.valueText}`,
-      };
-    },
+    ...mapActions(STORE, ["setPopulationTreeMapData"]),
     valueChanged(data) {
-      this.setPopulationChartData(this.years[data.value].name);
+      this.setPopulationTreeMapData(this.years[data.value].name);
+    },
+    customizeTooltip(arg) {
+      const data = arg.node.data;
+
+      return {
+        text: arg.node.isLeaf()
+          ? `<span class="country">${data.name}</span><br/>Population: ${arg.valueText}`
+          : null,
+      };
     },
   },
   mounted() {
-    this.setPopulationChartData(this.years[11].name);
+    this.setPopulationTreeMapData(this.years[11].name);
   },
 };
 </script>
 <style scoped>
-#chart {
-  height: 600px;
+#treemap {
+  height: 500px;
+}
+.country {
+  font-weight: 500;
 }
 </style>

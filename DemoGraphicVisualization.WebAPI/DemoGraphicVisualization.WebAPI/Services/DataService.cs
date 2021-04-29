@@ -15,12 +15,10 @@ namespace DemoGraphicVisualization.WebAPI.Services
     {
         private readonly IRestApiService restApiService;
         private readonly DataConverter dataConverter;
-        //private readonly Colors colors;
         public DataService(IRestApiService restApiService)
         {
             this.restApiService = restApiService;
             this.dataConverter = new DataConverter();
-           // this.colors = new Colors();
         }
         public List<PopulationDataChartVM> GetPopulationDataToChart(string year)
         {
@@ -33,12 +31,59 @@ namespace DemoGraphicVisualization.WebAPI.Services
         {
             RestApiPopulationDataDTO restApiData = restApiService.GetPopulationData();
             Dictionary<string, long> populationDataVM = dataConverter.ConvertPopulationDataToMap(restApiData, year);
-            //foreach(var item in populationDataVM)
-            //{
-            //    item.Color = colors.GetRandomHTMLColor();
-            //}
 
             return populationDataVM;
+        }
+        public List<PopulationTreeMapVM> GetPopulationDataToTreeMap(string year)
+        {
+            RestApiPopulationDataDTO restApiData = restApiService.GetPopulationData();
+            List<PopulationDataTreeMapVM> populationDataVM = dataConverter.ConvertPopulationDataToTreeMap(restApiData, year);
+            List<PopulationTreeMapVM> result = new List<PopulationTreeMapVM>();
+            PopulationTreeMapVM populationTreeMapVM = new PopulationTreeMapVM
+            {
+                Name = "Europe",
+                Items = populationDataVM
+            };
+            result.Add(populationTreeMapVM);
+
+            return result;
+        }
+        public PopulationDataGraphVM GetPopulationDataToGraph(string year)
+        {
+            RestApiPopulationDataDTO restApiData = restApiService.GetPopulationData();
+            List<PopulationDataChartVM> populationDataVM = dataConverter.ConvertPopulationDataToChart(restApiData, year);
+            PopulationDataGraphVM result = new PopulationDataGraphVM();
+            foreach(var item in populationDataVM)
+            {
+                if (item.Population != null && item.Population != 0)
+                {
+                    result.Nodes.Add(new GraphNodeVM
+                    {
+                        Id = item.Nation
+                    });
+                    result.Links.Add(new GraphLinkVM
+                    {
+                        Target = item.Nation,
+                        Population = item.Population
+                    });
+                }
+            }
+            foreach(var res in result.Nodes)
+            {
+                if (res.Id.StartsWith("Germany")) res.Id = "Germany";
+                if (res.Id.StartsWith("Kosovo")) res.Id = "Kosovo";
+            }
+            foreach(var re in result.Links)
+            {
+                if (re.Source.StartsWith("Germany")) re.Source = "Germany";
+                if (re.Target.StartsWith("Germany")) re.Target = "Germany";
+
+                if (re.Source.StartsWith("Kosovo")) re.Source = "Kosovo";
+                if (re.Target.StartsWith("Kosovo")) re.Target = "Kosovo";
+
+                re.Value = (Convert.ToDouble(re.Population) / 1000000);
+            }
+            return result;
         }
         public List<MigrationDataChartVM> GetMigrationDataToChart(string year, string[] nations)
         {

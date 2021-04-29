@@ -43,6 +43,7 @@
           :argument="data.year"
           :data="data"
         />
+        
         <template #annotationTemplate="{ data }">
           <AnnotationTemplate :annotation="data" />
         </template>
@@ -57,7 +58,7 @@ import { mapGetters, mapActions } from "vuex";
 import {
   DxChart,
   DxSeries,
-  // DxCommonSeriesSettings,
+  //DxCommonSeriesSettings,
   // DxLabel,
   // DxFormat,
   DxLegend,
@@ -91,7 +92,7 @@ export default {
     DxSelectBox,
     DxChart,
     DxSeries,
-    // DxCommonSeriesSettings,
+    //DxCommonSeriesSettings,
     // DxLabel,
     // DxFormat,
     DxLegend,
@@ -105,7 +106,6 @@ export default {
   methods: {
     ...mapActions(STORE, ["setNationMigrationChartData", "setNationsToLookup"]),
     nationValueChanged(data) {
-      debugger;
       this.selectedNation = data.value;
       this.setNationMigrationChartData([
         this.selectedNation,
@@ -113,7 +113,6 @@ export default {
       ]);
     },
     migrationValueChanged(data) {
-      debugger;
       this.selectedMigration = data.value;
       this.setNationMigrationChartData([
         this.selectedNation,
@@ -133,11 +132,6 @@ export default {
 };
 </script>
 <style scoped>
-.title {
-  font-size: 32px;
-  border-bottom: 1px solid black;
-  margin: 32px;
-}
 #chart {
   height: 600px;
 }

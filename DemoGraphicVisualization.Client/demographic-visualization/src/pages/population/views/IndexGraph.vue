@@ -1,19 +1,19 @@
 <template>
   <div>
     <div class="title">
-      Migration bar chart
+      Population force directed graph
     </div>
     <div>
-      <Chart />
+      <Graph />
     </div>
   </div>
 </template>
 <script>
-import Chart from "../components/MigrationChart";
+import Graph from "../components/PopulationGraph";
 
 export default {
   components: {
-    Chart,
+    Graph,
   },
 };
 </script>

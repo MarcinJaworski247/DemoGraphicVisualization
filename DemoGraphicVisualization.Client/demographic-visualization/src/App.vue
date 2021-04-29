@@ -11,7 +11,9 @@
         </a>
       </span>
       <div>
-        <div class="title">DemoGraphicVisualization<i class="ml-4 fas fa-globe-europe"></i></div>
+        <div class="title">
+          DemoGraphicVisualization<i class="ml-4 fas fa-globe-europe"></i>
+        </div>
       </div>
     </nav>
     <div id="side-menu" class="side-nav" :class="{ sidenavopen: opened }">
@@ -20,6 +22,12 @@
       </router-link>
       <router-link :to="{ name: `population.map.index` }">
         <div>Population map</div>
+      </router-link>
+      <router-link :to="{ name: `population.treemap.index` }">
+        <div>Population tree map</div>
+      </router-link>
+      <router-link :to="{ name: `population.graph.index` }">
+        <div>Population graph</div>
       </router-link>
       <router-link :to="{ name: `migration.chart.index` }">
         <div>Migration chart</div>
@@ -61,7 +69,7 @@ body {
   background-color: #f5f5f5;
   overflow-x: hidden;
 }
-.title{
+.title {
   font-size: 24px;
 }
 .navbar {

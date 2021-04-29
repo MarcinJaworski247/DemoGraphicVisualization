@@ -3,7 +3,6 @@ const data = "/data";
 
 class homeService {
   getMigrationDataToChart(param) {
-    debugger
     return axios.post(`${data}/getMigrationDataToChart`, param);
   }
   getMigrationDataToMap(year) {

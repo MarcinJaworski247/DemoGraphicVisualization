@@ -8,6 +8,12 @@ class homeService {
   getPopulationDataToMap(year) {
     return axios.get(`${data}/getPopulationDataToMap/${year}`);
   }
+  getPopulationTreeMapData(year) {
+    return axios.get(`${data}/getPopulationDataToTreeMap/${year}`);
+  }
+  getPopulationGraphData(year) {
+    return axios.get(`${data}/getPopulationDataToGraph/${year}`);
+  }
 }
 
 export default new homeService();

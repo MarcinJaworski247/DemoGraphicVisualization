@@ -13,8 +13,10 @@ namespace DemoGraphicVisualization.WebAPI.Services
     {
         List<PopulationDataChartVM> GetPopulationDataToChart(string year);
         Dictionary<string, long> GetPopulationDataToMap(string year);
+        List<PopulationTreeMapVM> GetPopulationDataToTreeMap(string year);
         List<MigrationDataChartVM> GetMigrationDataToChart(string year, string[] nations);
         List<ValueBinder<string, string>> GetNationsToLookup();
         List<NationMigrationChartDataVM> GetNationMigrationDataToChart(string nation, MigrationType migrationType);
+        PopulationDataGraphVM GetPopulationDataToGraph(string year);
     }
 }

@@ -23,7 +23,7 @@
           color-grouping-field="population"
         />
 
-        <DxTooltip :enabled="true" :customize-tooltip="customizeTooltip">
+        <DxTooltip :enabled="true" :customize-tooltip="customizeTooltip" format="millions">
           <DxBorder :visible="true" />
           <DxFont color="#000" />
         </DxTooltip>

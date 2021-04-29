@@ -93,7 +93,6 @@ export default {
       this.setMigrationChartData();
     },
     nationsChanged(data) {
-      debugger
       this.SelectedNations = data.value;
       this.setMigrationChartData();
     },
@@ -106,11 +105,6 @@ export default {
 };
 </script>
 <style scoped>
-.title {
-  font-size: 32px;
-  border-bottom: 1px solid black;
-  margin: 32px;
-}
 #chart {
   height: 600px;
 }

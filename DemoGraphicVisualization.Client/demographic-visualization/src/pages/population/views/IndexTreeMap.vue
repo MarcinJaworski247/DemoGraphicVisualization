@@ -1,19 +1,19 @@
 <template>
   <div>
     <div class="title">
-      Migration bar chart
+      Population tree map
     </div>
     <div>
-      <Chart />
+      <TreeMap />
     </div>
   </div>
 </template>
 <script>
-import Chart from "../components/MigrationChart";
+import TreeMap from "../components/PopulationTreeMap";
 
 export default {
   components: {
-    Chart,
+    TreeMap,
   },
 };
 </script>

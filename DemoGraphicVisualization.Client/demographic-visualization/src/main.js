@@ -18,6 +18,10 @@ import "@fortawesome/fontawesome-free/js/all.js";
 import "devextreme/dist/css/dx.common.css";
 import "devextreme/dist/css/dx.light.css";
 
+
+// styles
+import "@/styles/main.css"
+
 Vue.config.productionTip = false;
 
 new Vue({

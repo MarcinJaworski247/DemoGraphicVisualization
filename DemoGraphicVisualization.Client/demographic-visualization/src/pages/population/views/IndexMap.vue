@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="title">
-      Population
+      Population vector map
     </div>
     <div>
       <Map />
@@ -17,10 +17,3 @@ export default {
   },
 };
 </script>
-<style scoped>
-.title {
-  font-size: 32px;
-  border-bottom: 1px solid black;
-  margin: 32px;
-}
-</style>

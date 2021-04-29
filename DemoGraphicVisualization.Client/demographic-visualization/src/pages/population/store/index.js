@@ -5,17 +5,31 @@ const namespaced = true;
 
 const state = {
   populationChart: [],
+  populationTreeMap: [],
+  populationGraph: null,
 };
 
 const getters = {
   getField,
   getPopulationChartData: (state) => state.populationChart,
+  getPopulationTreeMapData: (state) => {
+    return state.populationTreeMap;
+  },
+  getPopulationGraphData: (state) => {
+    return state.populationGraph;
+  },
 };
 
 const mutations = {
   updateField,
-  setPopulationChartData(state, payload) {
+  setPopulationChartData: (state, payload) => {
     state.populationChart = payload;
+  },
+  setPopulationTreeMapData: (state, payload) => {
+    state.populationTreeMap = payload;
+  },
+  setPopulationGraphData: (state, payload) => {
+    state.populationGraph = payload;
   },
 };
 
@@ -36,6 +50,26 @@ const actions = {
         }
       );
     });
+  },
+  setPopulationTreeMapData: ({ commit }, year) => {
+    service.getPopulationTreeMapData(year).then((response) => {
+      commit("setPopulationTreeMapData", response.data);
+    });
+  },
+  setPopulationGraphData: ({ commit }, year) => {
+    service.getPopulationGraphData(year).then((response) => {
+      commit("setPopulationGraphData", response.data);
+    });
+    // return new Promise((resolve, reject) => {
+    //   service.getPopulationGraphData(year).then(
+    //     (response) => {
+    //       resolve(response);
+    //     },
+    //     (error) => {
+    //       reject(error);
+    //     }
+    //   );
+    // });
   },
 };
 

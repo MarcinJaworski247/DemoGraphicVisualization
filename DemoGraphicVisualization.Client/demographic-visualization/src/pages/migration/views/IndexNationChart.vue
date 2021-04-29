@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="title">
-      Migration by nation
+      Migration by nation bar chart
     </div>
     <div>
       <Chart />
@@ -17,10 +17,3 @@ export default {
   },
 };
 </script>
-<style scoped>
-.title {
-  font-size: 32px;
-  border-bottom: 1px solid black;
-  margin: 32px;
-}
-</style>
