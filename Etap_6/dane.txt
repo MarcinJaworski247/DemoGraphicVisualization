@@ -1,0 +1,12 @@
+>Zrealizowano w aktualnym etapie:
+- Wykres Tree Map i przetworzenie na jego potrzeby danych o populacji,
+- Force directed graph 
+- Filtrowanie danych
+
+>Do realizacji w kolejnym etapie:
+- dokończenie Force directed graph,
+- poprawki w UI,
+- refaktoryzacja kodu
+
+>Statystyki z repozytorium z ostatniego tygodnia:
+Excluding merges, 1 author has pushed 1 commit to main and 1 commit to all branches. On main, 31 files have changed and there have been 1,212 additions and 64 deletions.
