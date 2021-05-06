@@ -123,7 +123,7 @@ namespace DemoGraphicVisualization.WebAPI.Converters
                 Nation = x.Nation != null ? x.Nation.Value : "",
                 Population = x.Population,
                 Year = x.Time.Value
-            }).ToList();
+            }).OrderByDescending(x => x.Population).Take(25).ToList();
 
             return result;
         }

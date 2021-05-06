@@ -23,7 +23,6 @@ namespace DemoGraphicVisualization.WebAPI.VM
         public string Source { get; set; }
         public string Target { get; set; }
         public long? Population { get; set; }
-        public double Value { get; set; }
     }
     public class PopulationDataGraphVM
     {

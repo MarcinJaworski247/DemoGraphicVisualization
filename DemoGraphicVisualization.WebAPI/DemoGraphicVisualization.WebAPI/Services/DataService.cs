@@ -81,7 +81,7 @@ namespace DemoGraphicVisualization.WebAPI.Services
                 if (re.Source.StartsWith("Kosovo")) re.Source = "Kosovo";
                 if (re.Target.StartsWith("Kosovo")) re.Target = "Kosovo";
 
-                re.Value = (Convert.ToDouble(re.Population) / 1000000);
+                
             }
             return result;
         }

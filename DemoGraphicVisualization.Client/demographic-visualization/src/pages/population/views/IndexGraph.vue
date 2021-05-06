@@ -3,6 +3,7 @@
     <div class="title">
       Population force directed graph
     </div>
+    <div class="subtitle">Top 25 countries by population (year 2019)</div>
     <div>
       <Graph />
     </div>
