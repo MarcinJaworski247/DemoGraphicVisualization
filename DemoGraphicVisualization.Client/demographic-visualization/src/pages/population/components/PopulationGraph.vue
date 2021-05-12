@@ -1,45 +1,25 @@
 <template>
   <div>
-    <div class="ml-4 graph-background">
-      <svg id="svg" width="1200" height="600"></svg>
+    <div class="graph-background">
+      <svg id="svg" width="1200" height="800"></svg>
     </div>
   </div>
 </template>
 <script>
 import { mapGetters, mapActions } from "vuex";
 import { mapFields } from "vuex-map-fields";
-//import { DxSelectBox } from "devextreme-vue";
 
 import * as d3 from "d3";
 
 import { graphData } from "./data";
-import miserables from "./miserables";
 
 const STORE = "PopulationStore";
 
 export default {
   data() {
     return {
-      years: [
-        { id: 0, name: "2009" },
-        { id: 1, name: "2010" },
-        { id: 2, name: "2011" },
-        { id: 3, name: "2012" },
-        { id: 4, name: "2013" },
-        { id: 5, name: "2014" },
-        { id: 6, name: "2015" },
-        { id: 7, name: "2016" },
-        { id: 8, name: "2017" },
-        { id: 9, name: "2018" },
-        { id: 10, name: "2019" },
-        { id: 11, name: "2020" },
-      ],
       graphData,
-      miserables,
     };
-  },
-  components: {
-    //DxSelectBox,
   },
   computed: {
     ...mapGetters(STORE, ["getPopulationGraphData"]),
@@ -51,7 +31,7 @@ export default {
       this.setPopulationGraphData(this.years[data.value].name);
     },
     drawGraph() {
-      var svg = d3.select("svg"),
+      let svg = d3.select("svg"),
         width = +svg.attr("width"),
         height = +svg.attr("height");
 
@@ -61,7 +41,7 @@ export default {
         })
       );
 
-      var simulation = d3
+      let simulation = d3
         .forceSimulation()
         .force(
           "link",
@@ -77,25 +57,23 @@ export default {
         .force("charge", d3.forceManyBody())
         .force("center", d3.forceCenter(width / 2, height / 2))
         .force("y", d3.forceY(0.01))
-        .force("x", d3.forceX(0.01));
+        .force("x", d3.forceX(0.01))
+        .force("collide", d3.forceCollide().radius(60).iterations(2));
 
       d3.json(
         "http://localhost:65301/api/data/getPopulationDataToGraph/2019",
         function(error, graph) {
           if (error) throw error;
 
-          var link = svg
+          let link = svg
             .append("g")
             .attr("class", "links")
             .selectAll("line")
             .data(graph.links)
             .enter()
-            .append("line")
-            // .attr("stroke-width", function(d) {
-            //   return Math.sqrt(d.value);
-            // });
+            .append("line");
 
-          var node = svg
+          let node = svg
             .append("g")
             .attr("class", "nodes")
             .selectAll("g")
@@ -103,7 +81,7 @@ export default {
             .enter()
             .append("g");
 
-          var circles = node
+          let circles = node
             .append("circle")
             .attr("r", 10)
             .attr("fill", function(d) {
@@ -117,14 +95,12 @@ export default {
                 .on("end", dragended)
             );
 
-          var lables = node
+          let lables = node
             .append("text")
             .text(function(d) {
               let link = graph.links.find((el) => el.target === d.id);
               if (link != undefined)
-                return (
-                  d.id + " " + changeNumberPresentation(link.population)
-                );
+                return d.id + " " + changeNumberPresentation(link.population);
             })
             .attr("x", 12)
             .attr("y", 3);
@@ -184,7 +160,7 @@ export default {
         if (num < 1000) {
           return num;
         }
-        var si = [
+        let si = [
           { v: 1e3, s: "K" },
           { v: 1e6, s: "M" },
           { v: 1e9, s: "B" },
@@ -192,7 +168,7 @@ export default {
           { v: 1e15, s: "P" },
           { v: 1e18, s: "E" },
         ];
-        var i;
+        let i;
         for (i = si.length - 1; i > 0; i--) {
           if (num >= si[i].v) {
             break;
@@ -206,9 +182,6 @@ export default {
     },
   },
   mounted() {
-    //this.setPopulationGraphData(this.years[11].name).then((response) => {
-    //this.drawGraph(response.data);
-    //});
     this.drawGraph();
   },
 };
@@ -229,10 +202,14 @@ text {
   font-size: 10px;
 }
 
-.graph-background{
+.graph-background {
+  margin-left: 400px !important;
+  width: 1200px;
+  height: 800px;
   background-color: #fff;
-opacity: 0.8;
-background-image:  linear-gradient(#9da1ff 1px, transparent 1px), linear-gradient(to right, #9da1ff 1px, #fff 1px);
-background-size: 20px 20px;
+  opacity: 0.8;
+  background-image: linear-gradient(#9da1ff 1px, transparent 1px),
+    linear-gradient(to right, #9da1ff 1px, #fff 1px);
+  background-size: 20px 20px;
 }
 </style>
