@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="graph-background">
-      <svg id="svg" width="1200" height="800"></svg>
+      <svg id="svg" width="1200" height="1000"></svg>
     </div>
   </div>
 </template>
@@ -205,7 +205,7 @@ text {
 .graph-background {
   margin-left: 400px !important;
   width: 1200px;
-  height: 800px;
+  height: 1000px;
   background-color: #fff;
   opacity: 0.8;
   background-image: linear-gradient(#9da1ff 1px, transparent 1px),
