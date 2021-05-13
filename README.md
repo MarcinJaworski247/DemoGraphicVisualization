@@ -1,6 +1,6 @@
 # DemoGraphicVisualization
 
-Demographic data from Eurostat RestAPI service visualized with DevExtreme and d3 UI Controls.
+Demographic data from Eurostat RestAPI service visualized with DevExtreme and D3 UI Controls.
 
   
 
@@ -10,15 +10,15 @@ Demographic data from Eurostat RestAPI service visualized with DevExtreme and d3
 * Vue.js 2
 * Axios
 * D3
-* DevExtreme
+* DevExtreme 20.2
 
 ### Software environment
 * Node.js 12.6.3
-* .NET Core SDK
+* .NET Core SDK 3.1.408
 
-### Examples
-![directed-graph](https://user-images.githubusercontent.com/52715998/118056069-82b93780-b389-11eb-99fd-e4af556654e2.png)
+### Snapshots
+![image](https://user-images.githubusercontent.com/52715998/118182841-be133f00-b439-11eb-84b7-ab555e8f3070.png)
 
-![migration-bar-chart](https://user-images.githubusercontent.com/52715998/118056076-877deb80-b389-11eb-8db3-d326b475bd2d.png)
+![image](https://user-images.githubusercontent.com/52715998/118182908-ce2b1e80-b439-11eb-95b1-ef485b246967.png)
 
-![vector-map](https://user-images.githubusercontent.com/52715998/118056081-88af1880-b389-11eb-98d4-9eaaa3056530.png)
+![image](https://user-images.githubusercontent.com/52715998/118183168-164a4100-b43a-11eb-9ee4-33a4212ba0b9.png)
