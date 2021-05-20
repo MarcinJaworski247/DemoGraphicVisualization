@@ -60,5 +60,23 @@ namespace DemoGraphicVisualization.WebAPI.Controllers
             var data = dataService.GetNationMigrationDataToChart(nation, migrationType);
             return Ok(data);
         }
+        [HttpGet("getAssaultsDataToChart/{nation}")]
+        public ActionResult GetAssaultsDataToChart(string nation)
+        {
+            var data = dataService.GetAssaultsDataToChart(nation);
+            return Ok(data);
+        }
+        [HttpGet("getHealthyLifeDataToChart/{nation}")]
+        public ActionResult GetHealthyLifeDataToChart(string nation)
+        {
+            var data = dataService.GetHealthyLifeDataToChart(nation);
+            return Ok(data);
+        }
+        [HttpGet("getMigrationAverage/{migrationType}")]
+        public ActionResult GetMigrationAverage(MigrationType migrationType)
+        {
+            var data = dataService.GetMigrationAverage(migrationType);
+            return Ok(data);
+        }
     }
 }   

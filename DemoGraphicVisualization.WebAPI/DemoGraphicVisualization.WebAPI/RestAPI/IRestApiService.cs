@@ -11,5 +11,7 @@ namespace DemoGraphicVisualization.WebAPI.RestAPI
         RestApiPopulationDataDTO GetPopulationData();
         RestApiMigrationDataDTO GetImmigrationData();
         RestApiMigrationDataDTO GetEmigrationData();
+        RestApiAssaultsDataDTO GetAssaultsPerHundredData();
+        RestApiHealthyLifeDataDTO GetHealfyLifeExceptationData();
     }
 }

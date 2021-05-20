@@ -105,6 +105,82 @@ namespace DemoGraphicVisualization.WebAPI.Services
             RestApiMigrationDataDTO emigration = restApiService.GetEmigrationData();
             List<NationMigrationChartDataVM> result = dataConverter.ConvertMigrationDataToNationChart(immigration, emigration, nation, migrationType);
 
+            List<MigrationAverageVM> avg = GetMigrationAverage(migrationType);
+            foreach(var res in result)
+            {
+                res.Average = avg.Where(x => x.Year == res.Year).Select(x => x.Average).FirstOrDefault();
+            }
+
+            return result;
+        }
+        public List<AssaultsDataChartVM> GetAssaultsDataToChart(string nation)
+        {
+            RestApiAssaultsDataDTO assaults = restApiService.GetAssaultsPerHundredData();
+            List<AssaultsDataChartVM> result = dataConverter.ConvertAssaultsDataToChart(assaults, nation);
+            return result;
+        }
+        public List<HealthyLifeDataChartVM> GetHealthyLifeDataToChart(string nation)
+        {
+            RestApiHealthyLifeDataDTO healthyLife = restApiService.GetHealfyLifeExceptationData();
+            List<HealthyLifeDataChartVM> result = dataConverter.ConverthealthyLifeDataToChart(healthyLife, nation);
+            return result;
+        }
+        public List<MigrationAverageVM> GetMigrationAverage(MigrationType migrationType)
+        {
+            RestApiMigrationDataDTO migration = new RestApiMigrationDataDTO();
+            switch (migrationType)
+            {
+                case MigrationType.Emigration:
+                    migration = restApiService.GetEmigrationData();
+                    break;
+                case MigrationType.Immigration:
+                    migration = restApiService.GetImmigrationData();
+                    break;
+            }
+
+            List<Converters.Time> times = migration.Dimensions.Time.TimeCategory.Indexes.Select(x => new Converters.Time
+            {
+                Key = x.Value,
+                Value = x.Key
+            }).ToList();
+
+            List<Value> values = new List<Value>();
+            for (int x = 0; x <= 791; x++)
+            {
+                values.Add(new Value(x.ToString()));
+            }
+
+            for (int x = 0; x < values.Count; x++)
+            {
+                values[x].Population = migration.Values.Where(y => y.Key == values[x].Key).Select(y => y.Value).FirstOrDefault();
+            }
+
+            int i = 0;
+            while (i < values.Count)
+            {
+                for (int u = 0; u < times.Count; u++)
+                {
+                    if (i < values.Count)
+                    {
+                        values[i].Time = times[u];
+                        i++;
+                    }
+                }
+            }
+
+            //List<MigrationAverageVM> result = values.GroupBy(x => x.Time.Key).Average(x => x.)
+
+            List<MigrationAverageVM> result = new List<MigrationAverageVM>();
+            foreach(var time in times)
+            {
+                MigrationAverageVM migrationAverage = new MigrationAverageVM
+                {
+                    Year = time.Value,
+                    Average = Math.Round(values.Where(x => x.Time.Value.Equals(time.Value) && x.Population != 0 && x.Population != null).Average(x => x.Population),2)
+                };
+                result.Add(migrationAverage);
+            }
+
             return result;
         }
     }

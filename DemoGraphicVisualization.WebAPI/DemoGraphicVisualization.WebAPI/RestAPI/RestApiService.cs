@@ -66,5 +66,41 @@ namespace DemoGraphicVisualization.WebAPI.RestAPI
                 return null;
             }
         }
+        public RestApiAssaultsDataDTO GetAssaultsPerHundredData()
+        {
+            IRestClient restClient = new RestClient();
+            IRestRequest restRequest = new RestRequest
+                ("http://ec.europa.eu/eurostat/wdds/rest/data/v2.1/json/en/crim_off_cat?filterNonGeo=1&precision=2&unit=P_HTHAB&iccs=ICCS02011");
+            restRequest.AddHeader("Accept", "application/json");
+
+            IRestResponse<RestApiAssaultsDataDTO> restResponse = restClient.Get<RestApiAssaultsDataDTO>(restRequest);
+
+            if (restResponse.IsSuccessful)
+            {
+                return restResponse.Data;
+            }
+            else
+            {
+                return null;
+            }
+        }
+        public RestApiHealthyLifeDataDTO GetHealfyLifeExceptationData()
+        {
+            IRestClient restClient = new RestClient();
+            IRestRequest restRequest = new RestRequest
+                ("http://ec.europa.eu/eurostat/wdds/rest/data/v2.1/json/en/hlth_silc_17?indic_he=HE_BIRTH&filterNonGeo=1&precision=2&sex=T&unit=YR");
+            restRequest.AddHeader("Accept", "application/json");
+
+            IRestResponse<RestApiHealthyLifeDataDTO> restResponse = restClient.Get<RestApiHealthyLifeDataDTO>(restRequest);
+
+            if (restResponse.IsSuccessful)
+            {
+                return restResponse.Data;
+            }
+            else
+            {
+                return null;
+            }
+        }
     }
 }

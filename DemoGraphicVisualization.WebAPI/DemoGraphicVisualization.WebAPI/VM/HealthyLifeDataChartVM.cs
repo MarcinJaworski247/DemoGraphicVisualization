@@ -5,11 +5,11 @@ using System.Threading.Tasks;
 
 namespace DemoGraphicVisualization.WebAPI.VM
 {
-    public class NationMigrationChartDataVM
+    public class HealthyLifeDataChartVM
     {
+        public string Country { get; set; }
+        public string Key { get; set; }
+        public double ExpectedLife { get; set; }
         public string Year { get; set; }
-        public long Migration { get; set; }
-        public double? Change { get; set; }
-        public double? Average { get; set; }
     }
 }

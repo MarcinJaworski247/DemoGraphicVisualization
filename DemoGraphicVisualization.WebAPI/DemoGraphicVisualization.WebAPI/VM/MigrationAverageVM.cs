@@ -5,11 +5,9 @@ using System.Threading.Tasks;
 
 namespace DemoGraphicVisualization.WebAPI.VM
 {
-    public class NationMigrationChartDataVM
+    public class MigrationAverageVM
     {
+        public double Average { get; set; }
         public string Year { get; set; }
-        public long Migration { get; set; }
-        public double? Change { get; set; }
-        public double? Average { get; set; }
     }
 }

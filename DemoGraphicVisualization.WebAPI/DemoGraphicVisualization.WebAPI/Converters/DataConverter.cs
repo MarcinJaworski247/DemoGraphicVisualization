@@ -324,9 +324,9 @@ namespace DemoGraphicVisualization.WebAPI.Converters
             for(int w = 0; w < nations.Count; w++)
             {
                 List<Value> tmp = values.Skip(it).Take(12).ToList();
-                foreach(var kurwaMacMamDosc in tmp)
+                foreach(var t in tmp)
                 {
-                    kurwaMacMamDosc.Nation = nations[w];
+                    t.Nation = nations[w];
                 }
                 it += 12;
             }
@@ -347,6 +347,122 @@ namespace DemoGraphicVisualization.WebAPI.Converters
                     result[t].Change = 0.0D;
                 else if(result[t-1].Migration != 0)
                     result[t].Change = ((Convert.ToDouble(result[t].Migration) / Convert.ToDouble(result[t - 1].Migration)) - 1) * 100;
+            }
+
+            return result;
+        }
+        public List<AssaultsDataChartVM> ConvertAssaultsDataToChart(RestApiAssaultsDataDTO data, string nation)
+        {
+            // nations full list
+            List<Nation> nations = data.Dimensions.Geo.Category.Indexes.Select(x => new Nation
+            {
+                Key = x.Value,
+                Shortcut = x.Key
+            }).ToList();
+
+            foreach (var item in nations)
+            {
+                item.Value = data.Dimensions.Geo.Category.Labels.Where(x => x.Key == item.Shortcut).Select(x => x.Value).FirstOrDefault();
+            }
+
+            // times full list
+            List<Time> times = data.Dimensions.Time.TimeCategory.Indexes.Select(x => new Time
+            {
+                Key = x.Value,
+                Value = x.Key
+            }).ToList();
+
+            // init result list
+            List<AssaultsDataChartVM> result = new List<AssaultsDataChartVM>();
+            for (int i = 0; i < 450; i++)
+            {
+                result.Add(new AssaultsDataChartVM());
+            }
+
+            // assign nation name to elements
+            int iterator = 0;
+            for (int j = 0; j < nations.Count; j++)
+            {
+                List<AssaultsDataChartVM> tmp = result.Skip(iterator).Take(11).ToList();
+                foreach (var t in tmp)
+                {
+                    t.Country = nations[j].Value;
+                    t.Key = nations[j].Shortcut;
+                }
+                iterator += 11;
+            }
+
+            // set assaults rate
+            for (int k = 0; k < result.Count; k++)
+            {
+                result[k].Assaults = data.Values.Where(y => y.Key == k.ToString()).Select(y => y.Value).FirstOrDefault();
+            }
+
+            // leave only filtered nation
+            result.RemoveAll(x => !x.Country.Equals(nation));
+
+            // assign info about year to result
+            for (int m = 0; m < times.Count; m++)
+            {
+                result[m].Year = times[m].Value;
+            }
+
+            return result;
+        }
+        public List<HealthyLifeDataChartVM> ConverthealthyLifeDataToChart(RestApiHealthyLifeDataDTO data, string nation)
+        {
+            // nations full list
+            List<Nation> nations = data.Dimensions.Geo.Category.Indexes.Select(x => new Nation
+            {
+                Key = x.Value,
+                Shortcut = x.Key
+            }).ToList();
+
+            foreach (var item in nations)
+            {
+                item.Value = data.Dimensions.Geo.Category.Labels.Where(x => x.Key == item.Shortcut).Select(x => x.Value).FirstOrDefault();
+            }
+
+            // times full list
+            List<Time> times = data.Dimensions.Time.TimeCategory.Indexes.Select(x => new Time
+            {
+                Key = x.Value,
+                Value = x.Key
+            }).ToList();
+
+            // init result list
+            List<HealthyLifeDataChartVM> result = new List<HealthyLifeDataChartVM>();
+            for (int i = 0; i < 496; i++)
+            {
+                result.Add(new HealthyLifeDataChartVM());
+            }
+
+            // assign nation name to elements
+            int iterator = 0;
+            for (int j = 0; j < nations.Count; j++)
+            {
+                List<HealthyLifeDataChartVM> tmp = result.Skip(iterator).Take(16).ToList();
+                foreach (var t in tmp)
+                {
+                    t.Country = nations[j].Value;
+                    t.Key = nations[j].Shortcut;
+                }
+                iterator += 16;
+            }
+
+            // set assaults rate
+            for (int k = 0; k < result.Count; k++)
+            {
+                result[k].ExpectedLife = data.Values.Where(y => y.Key == k.ToString()).Select(y => y.Value).FirstOrDefault();
+            }
+
+            // leave only filtered nation
+            result.RemoveAll(x => !x.Country.Equals(nation));
+
+            // assign info about year to result
+            for (int m = 0; m < times.Count; m++)
+            {
+                result[m].Year = times[m].Value;
             }
 
             return result;

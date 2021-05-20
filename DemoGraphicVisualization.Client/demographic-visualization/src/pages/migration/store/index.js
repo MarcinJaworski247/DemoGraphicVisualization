@@ -11,6 +11,9 @@ const state = {
     SelectedNations: [],
     Year: "",
   },
+  assaults: [],
+  healthyLife: [],
+  migrationAverages: [],
 };
 
 const getters = {
@@ -22,6 +25,9 @@ const getters = {
   getNationsToLookup: (state) => {
     return state.nationsLookup;
   },
+  getAssaultsChartData: (state) => state.assaults,
+  getHealthyLifeChartData: (state) => state.healthyLife,
+  getMigrationAveragesData: (state) => state.migrationAverages,
 };
 
 const mutations = {
@@ -35,10 +41,19 @@ const mutations = {
   setNationsToLookup(state, payload) {
     state.nationsLookup = payload;
   },
+  setAssaultsChartData(state, payload) {
+    state.assaults = payload;
+  },
+  setHealthyLifeChartData(state, payload) {
+    state.healthyLife = payload;
+  },
+  setMigrationAveragesData(state, payload) {
+    state.migrationAverages = payload;
+  },
 };
 
 const actions = {
-  setMigrationChartData: ({ commit, state }, ) => {
+  setMigrationChartData: ({ commit, state }) => {
     service.getMigrationDataToChart(state.param).then((response) => {
       commit("setMigrationChartData", response.data);
     });
@@ -63,6 +78,21 @@ const actions = {
   setNationsToLookup: ({ commit }) => {
     service.getNationsToLookup().then((response) => {
       commit("setNationsToLookup", response.data);
+    });
+  },
+  setAssaultsChartData: ({ commit }, nation) => {
+    service.getAssaultsDataToChart(nation).then((response) => {
+      commit("setAssaultsChartData", response.data);
+    });
+  },
+  setHealthyLifeChartData: ({ commit }, nation) => {
+    service.getHealthyLifeDataToChart(nation).then((response) => {
+      commit("setHealthyLifeChartData", response.data);
+    });
+  },
+  setMigrationAveragesData: ({ commit }, migrationType) => {
+    service.getMigrationAveragesData(migrationType).then((response) => {
+      commit("setMigrationAveragesData", response.data);
     });
   },
 };

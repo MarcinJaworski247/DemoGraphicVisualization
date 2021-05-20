@@ -20,17 +20,35 @@
         />
       </div>
     </div>
-    <div>
+    <div class="row mt-1">
+      <DxChart
+        id="assaults"
+        :data-source="getAssaultsChartData"
+        palette="Material"
+        title="Assaults per hundred people"
+      >
+        <DxCommonSeriesSettings type="line" argument-field="year" />
+        <DxSeries value-field="assaults" name="Assaults rate" />
+      </DxChart>
+    </div>
+    <div class="row mt-1">
+      <DxChart
+        id="health"
+        :data-source="getHealthyLifeChartData"
+        palette="Bright"
+        title="Expected healthy life years"
+      >
+        <DxCommonSeriesSettings type="line" argument-field="year" />
+        <DxSeries value-field="expectedLife" name="Expected life" />
+      </DxChart>
+    </div>
+    <div class="row mt-1">
       <DxChart
         id="chart"
         :data-source="getNationMigrationChartData"
         palette="Ocean"
+        title="Migration"
       >
-        <!-- <DxCommonSeriesSettings argument-field="year" type="bar">
-          <DxLabel :visible="true">
-            <DxFormat :precision="0" type="fixedPoint" />
-          </DxLabel>
-        </DxCommonSeriesSettings> -->
         <DxCommonAnnotationSettings
           :allow-dragging="false"
           type="custom"
@@ -43,14 +61,37 @@
           :argument="data.year"
           :data="data"
         />
-        
+
         <template #annotationTemplate="{ data }">
           <AnnotationTemplate :annotation="data" />
         </template>
-        <DxSeries type="bar" argument-field="year" value-field="migration" name="Migration" />
-        <DxLegend :visible="false" />
+        <DxSeries
+          type="bar"
+          argument-field="year"
+          value-field="migration"
+          name="Migration"
+        />
+        <DxLegend :visible="true" />
+
+        <DxSeries
+          type="line"
+          value-field="average"
+          name="EU Average"
+          color="#008fd8"
+          argument-field="year"
+        />
       </DxChart>
     </div>
+    <!-- <div class="row mt-4">
+      <DxChart
+        :data-source="getMigrationAveragesData"
+        palette="Harmony Light"
+        title="Average migration in EU countries"
+      >
+        <DxCommonSeriesSettings type="line" argument-field="year" />
+        <DxSeries value-field="average" name="Average EU migration" />
+      </DxChart>
+    </div> -->
   </div>
 </template>
 <script>
@@ -58,7 +99,7 @@ import { mapGetters, mapActions } from "vuex";
 import {
   DxChart,
   DxSeries,
-  //DxCommonSeriesSettings,
+  DxCommonSeriesSettings,
   // DxLabel,
   // DxFormat,
   DxLegend,
@@ -92,7 +133,7 @@ export default {
     DxSelectBox,
     DxChart,
     DxSeries,
-    //DxCommonSeriesSettings,
+    DxCommonSeriesSettings,
     // DxLabel,
     // DxFormat,
     DxLegend,
@@ -101,16 +142,30 @@ export default {
     AnnotationTemplate,
   },
   computed: {
-    ...mapGetters(STORE, ["getNationMigrationChartData", "getNationsToLookup"]),
+    ...mapGetters(STORE, [
+      "getNationMigrationChartData",
+      "getNationsToLookup",
+      "getAssaultsChartData",
+      "getHealthyLifeChartData",
+      "getMigrationAveragesData",
+    ]),
   },
   methods: {
-    ...mapActions(STORE, ["setNationMigrationChartData", "setNationsToLookup"]),
+    ...mapActions(STORE, [
+      "setNationMigrationChartData",
+      "setNationsToLookup",
+      "setAssaultsChartData",
+      "setHealthyLifeChartData",
+      "setMigrationAveragesData",
+    ]),
     nationValueChanged(data) {
       this.selectedNation = data.value;
       this.setNationMigrationChartData([
         this.selectedNation,
         this.selectedMigration,
       ]);
+      this.setAssaultsChartData(this.selectedNation);
+      this.setHealthyLifeChartData(this.selectedNation);
     },
     migrationValueChanged(data) {
       this.selectedMigration = data.value;
@@ -118,6 +173,7 @@ export default {
         this.selectedNation,
         this.selectedMigration,
       ]);
+      this.setMigrationAveragesData(this.selectedMigration);
     },
   },
   mounted() {
@@ -128,11 +184,20 @@ export default {
       this.selectedMigration,
     ]);
     this.setNationsToLookup();
+    this.setAssaultsChartData(this.selectedNation);
+    this.setHealthyLifeChartData(this.selectedNation);
+    this.setMigrationAveragesData(this.selectedMigration);
   },
 };
 </script>
 <style scoped>
 #chart {
-  height: 600px;
+  height: 400px;
+}
+#assaults {
+  height: 180px;
+}
+#health {
+  height: 180px;
 }
 </style>

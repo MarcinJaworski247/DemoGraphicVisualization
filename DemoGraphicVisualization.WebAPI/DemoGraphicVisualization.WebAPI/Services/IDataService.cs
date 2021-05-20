@@ -18,5 +18,8 @@ namespace DemoGraphicVisualization.WebAPI.Services
         List<ValueBinder<string, string>> GetNationsToLookup();
         List<NationMigrationChartDataVM> GetNationMigrationDataToChart(string nation, MigrationType migrationType);
         PopulationDataGraphVM GetPopulationDataToGraph(string year);
+        List<AssaultsDataChartVM> GetAssaultsDataToChart(string nation);
+        List<HealthyLifeDataChartVM> GetHealthyLifeDataToChart(string nation);
+        List<MigrationAverageVM> GetMigrationAverage(MigrationType migrationType);
     }
 }
