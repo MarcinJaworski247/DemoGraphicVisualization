@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="row">
-      <div class="ml-4 mb-4" style="display: flex">
+      <div class="ml-2 mb-4" style="display: flex">
         <DxSelectBox
           :data-source="getNationsToLookup"
           value-expr="key"
@@ -82,34 +82,27 @@
         />
       </DxChart>
     </div>
-    <!-- <div class="row mt-4">
-      <DxChart
-        :data-source="getMigrationAveragesData"
-        palette="Harmony Light"
-        title="Average migration in EU countries"
-      >
-        <DxCommonSeriesSettings type="line" argument-field="year" />
-        <DxSeries value-field="average" name="Average EU migration" />
-      </DxChart>
-    </div> -->
   </div>
 </template>
 <script>
+// vuex
 import { mapGetters, mapActions } from "vuex";
+
+// devextreme
 import {
   DxChart,
   DxSeries,
   DxCommonSeriesSettings,
-  // DxLabel,
-  // DxFormat,
   DxLegend,
   DxAnnotation,
   DxCommonAnnotationSettings,
 } from "devextreme-vue/chart";
 import { DxSelectBox } from "devextreme-vue";
 
+// components
 import AnnotationTemplate from "./Annotation";
 
+// store
 const STORE = "MigrationStore";
 
 export default {
@@ -134,8 +127,6 @@ export default {
     DxChart,
     DxSeries,
     DxCommonSeriesSettings,
-    // DxLabel,
-    // DxFormat,
     DxLegend,
     DxAnnotation,
     DxCommonAnnotationSettings,

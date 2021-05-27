@@ -35,9 +35,6 @@
       <router-link :to="{ name: `migration.nationChart.index` }">
         <div>Migration chart by nation</div>
       </router-link>
-      <!-- <router-link :to="{ name: `migration.map.index` }">
-        <div>Migration map</div>
-      </router-link> -->
     </div>
     <div id="main" :class="{ mainopen: opened }">
       <router-view />
@@ -60,7 +57,6 @@ export default {
       this.opened = !this.opened;
     },
   },
-  components: {},
 };
 </script>
 
@@ -99,11 +95,6 @@ body {
   margin: 8px 0 0 0;
   list-style: none;
 }
-
-/* .navbar a:hover {
-  background-color: #ddd;
-  color: #000;
-} */
 
 .side-nav {
   height: 100%;

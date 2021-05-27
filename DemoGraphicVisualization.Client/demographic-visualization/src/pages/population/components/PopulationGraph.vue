@@ -6,13 +6,17 @@
   </div>
 </template>
 <script>
+// vuex
 import { mapGetters, mapActions } from "vuex";
 import { mapFields } from "vuex-map-fields";
 
+// d3
 import * as d3 from "d3";
 
+// data
 import { graphData } from "./data";
 
+// store
 const STORE = "PopulationStore";
 
 export default {
@@ -58,7 +62,13 @@ export default {
         .force("center", d3.forceCenter(width / 2, height / 2))
         .force("y", d3.forceY(0.01))
         .force("x", d3.forceX(0.01))
-        .force("collide", d3.forceCollide().radius(60).iterations(2));
+        .force(
+          "collide",
+          d3
+            .forceCollide()
+            .radius(60)
+            .iterations(2)
+        );
 
       d3.json(
         "http://localhost:65301/api/data/getPopulationDataToGraph/2019",

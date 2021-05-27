@@ -7,7 +7,7 @@
           value-expr="id"
           display-expr="name"
           :value="years[11].id"
-          class="ml-4"
+          class="ml-2 select-box"
           @value-changed="valueChanged"
         />
       </div>
@@ -38,7 +38,10 @@
   </div>
 </template>
 <script>
+// vuex
 import { mapGetters, mapActions } from "vuex";
+
+// devextreme
 import {
   DxChart,
   DxSeriesTemplate,
@@ -49,6 +52,7 @@ import {
 } from "devextreme-vue/chart";
 import { DxSelectBox } from "devextreme-vue";
 
+// store
 const STORE = "PopulationStore";
 
 export default {

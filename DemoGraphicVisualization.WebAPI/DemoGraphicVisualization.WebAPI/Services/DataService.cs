@@ -168,15 +168,13 @@ namespace DemoGraphicVisualization.WebAPI.Services
                 }
             }
 
-            //List<MigrationAverageVM> result = values.GroupBy(x => x.Time.Key).Average(x => x.)
-
             List<MigrationAverageVM> result = new List<MigrationAverageVM>();
             foreach(var time in times)
             {
                 MigrationAverageVM migrationAverage = new MigrationAverageVM
                 {
                     Year = time.Value,
-                    Average = Math.Round(values.Where(x => x.Time.Value.Equals(time.Value) && x.Population != 0 && x.Population != null).Average(x => x.Population),2)
+                    Average = Math.Round(values.Where(x => x.Time.Value.Equals(time.Value) && x.Population != 0).Average(x => x.Population),2)
                 };
                 result.Add(migrationAverage);
             }

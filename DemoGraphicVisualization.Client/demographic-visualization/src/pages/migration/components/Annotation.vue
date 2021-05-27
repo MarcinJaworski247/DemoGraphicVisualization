@@ -1,15 +1,10 @@
 <template>
-  <!-- <div class="annotation">
-        <span :class="() => data.Change >= 0 ? green : red">
-            {{ data.change.toPrecision(3) }}%
-        </span>
-    </div>  -->
   <svg class="annotation">
     <text
       x="70"
       y="25"
       class="state"
-      :fill="(data.change >= 0) ? 'green' : 'red'"
+      :fill="data.change >= 0 ? 'green' : 'red'"
     >
       {{ data.change.toPrecision(3) }}%
     </text>
@@ -28,8 +23,6 @@ export default {
     return {
       data: this.annotation.data,
     };
-  },
-  mounted() {
   },
 };
 </script>

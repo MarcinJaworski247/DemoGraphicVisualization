@@ -7,7 +7,7 @@
           value-expr="id"
           display-expr="name"
           :value="years[11].id"
-          class="ml-4"
+          class="ml-2 select-box"
           @value-changed="valueChanged"
         />
       </div>
@@ -23,7 +23,11 @@
           color-grouping-field="population"
         />
 
-        <DxTooltip :enabled="true" :customize-tooltip="customizeTooltip" format="millions">
+        <DxTooltip
+          :enabled="true"
+          :customize-tooltip="customizeTooltip"
+          format="millions"
+        >
           <DxBorder :visible="true" />
           <DxFont color="#000" />
         </DxTooltip>
@@ -36,10 +40,17 @@
   </div>
 </template>
 <script>
+// vuex
 import { mapActions } from "vuex";
+
+// store
 const STORE = "PopulationStore";
-import * as mapsData from "devextreme/dist/js/vectormap-data/europe.js";
+
+// data
 import { populations } from "./data.js";
+
+// devextreme
+import * as mapsData from "devextreme/dist/js/vectormap-data/europe.js";
 import {
   DxVectorMap,
   DxLayer,
@@ -50,6 +61,7 @@ import {
   DxFont,
 } from "devextreme-vue/vector-map";
 import { DxSelectBox } from "devextreme-vue";
+
 export default {
   components: {
     DxVectorMap,
@@ -106,14 +118,6 @@ export default {
       elements.forEach((element) => {
         const country = populations[element.attribute("name")];
         element.attribute("population", populations[element.attribute("name")]);
-        // if (country) {
-        //   element.applySettings({
-        //     color: "#e0e000",
-        //     hoveredColor: "navy",
-        //     selectedColor: "#008f00",
-        //     text: `${country.name}`
-        //   });
-        // }
       });
     },
     customizeText(itemInfo) {

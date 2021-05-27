@@ -7,7 +7,7 @@
           value-expr="id"
           display-expr="name"
           :value="years[11].id"
-          class="ml-4"
+          class="ml-2 select-box"
           @value-changed="valueChanged"
         />
         <div class="dx-field-value">
@@ -38,8 +38,11 @@
   </div>
 </template>
 <script>
+// vuex
 import { mapGetters, mapActions } from "vuex";
 import { mapFields } from "vuex-map-fields";
+
+// devextreme
 import {
   DxChart,
   DxSeries,
@@ -51,6 +54,7 @@ import {
 import { DxSelectBox } from "devextreme-vue";
 import DxTagBox from "devextreme-vue/tag-box";
 
+// store
 const STORE = "MigrationStore";
 
 export default {

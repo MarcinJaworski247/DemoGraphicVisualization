@@ -12,34 +12,30 @@ const state = {
 const getters = {
   getField,
   getPopulationChartData: (state) => state.populationChart,
-  getPopulationTreeMapData: (state) => {
-    return state.populationTreeMap;
-  },
-  getPopulationGraphData: (state) => {
-    return state.populationGraph;
-  },
+  getPopulationTreeMapData: (state) => state.populationTreeMap,
+  getPopulationGraphData: (state) => state.populationGraph,
 };
 
 const mutations = {
   updateField,
-  setPopulationChartData: (state, payload) => {
+  SET_POPULATION_CHART_DATA: (state, payload) => {
     state.populationChart = payload;
   },
-  setPopulationTreeMapData: (state, payload) => {
+  SET_POPULATION_TREEMAP_DATA: (state, payload) => {
     state.populationTreeMap = payload;
   },
-  setPopulationGraphData: (state, payload) => {
+  SET_POPULATION_GRAPH_DATA: (state, payload) => {
     state.populationGraph = payload;
   },
 };
 
 const actions = {
-  setPopulationChartData: ({ commit }, year) => {
-    service.getPopulationDataToChart(year).then((response) => {
-      commit("setPopulationChartData", response.data);
+  setPopulationChartData: async ({ commit }, year) => {
+    await service.getPopulationDataToChart(year).then((response) => {
+      commit("SET_POPULATION_CHART_DATA", response.data);
     });
   },
-  setPopulationMapData: ({ commit }, year) => {
+  setPopulationMapData: async ({ commit }, year) => {
     return new Promise((resolve, reject) => {
       service.getPopulationDataToMap(year).then(
         (response) => {
@@ -51,25 +47,15 @@ const actions = {
       );
     });
   },
-  setPopulationTreeMapData: ({ commit }, year) => {
-    service.getPopulationTreeMapData(year).then((response) => {
-      commit("setPopulationTreeMapData", response.data);
+  setPopulationTreeMapData: async ({ commit }, year) => {
+    await service.getPopulationTreeMapData(year).then((response) => {
+      commit("SET_POPULATION_TREEMAP_DATA", response.data);
     });
   },
-  setPopulationGraphData: ({ commit }, year) => {
-    service.getPopulationGraphData(year).then((response) => {
-      commit("setPopulationGraphData", response.data);
+  setPopulationGraphData: async ({ commit }, year) => {
+    await service.getPopulationGraphData(year).then((response) => {
+      commit("SET_POPULATION_GRAPH_DATA", response.data);
     });
-    // return new Promise((resolve, reject) => {
-    //   service.getPopulationGraphData(year).then(
-    //     (response) => {
-    //       resolve(response);
-    //     },
-    //     (error) => {
-    //       reject(error);
-    //     }
-    //   );
-    // });
   },
 };
 
