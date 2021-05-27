@@ -9,7 +9,6 @@ import PopulationGraph from "./pages/population/views/IndexGraph.vue";
 
 // migration
 import MigrationChart from "./pages/migration/views/IndexChart.vue";
-import MigrationMap from "./pages/migration/views/IndexMap.vue";
 import NationMigrationChart from "./pages/migration/views/IndexNationChart.vue";
 
 Vue.use(Router);
@@ -39,11 +38,6 @@ const allRoutes = [
     path: "/migration/chart",
     name: "migration.chart.index",
     component: MigrationChart,
-  },
-  {
-    path: "/migration/map",
-    name: "migration.map.index",
-    component: MigrationMap,
   },
   {
     path: "/migration/nationChart",
