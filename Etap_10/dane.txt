@@ -1,0 +1,10 @@
+>Zrealizowano w aktualnym etapie:
+- code cleanup,
+- code refactoring, 
+- dokończenie dokumentacji.
+
+>Do realizacji w kolejnym etapie:
+- - -
+
+>Statystyki z repozytorium z ostatniego tygodnia:
+Excluding merges, 1 author has pushed 4 commits to main and 4 commits to all branches. On main, 22 files have changed and there have been 133 additions and 119 deletions.
